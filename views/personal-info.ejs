@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>个人信息</title>
+    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+    <!-- bootstrap -->
+    <link href="/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="/css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="/css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="/css/elements.css" />
+    <link rel="stylesheet" type="text/css" href="/css/icons.css" />
+
+    <!-- libraries -->
+    <link rel="stylesheet" type="text/css" href="/css/lib/font-awesome.css" />
+    
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="/css/compiled/personal-info.css" type="text/css" media="screen" />
+
+    <!-- open sans font -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body>
+
+    <!-- navbar -->
+   
+    <%- include head.ejs %>
+    <!-- end navbar -->
+    <%- include left.ejs %>
+	<!-- main container .wide-content is used for this layout without sidebar :)  -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="settings-wrapper" id="pad-wrapper">
+                <!-- avatar column -->
+                <div class="span3 avatar-box">
+                    <div class="personal-image">
+                        <img src="/img/personal-info.png" class="avatar img-circle" />
+                        <p>Upload a different photo...</p>
+                        
+                        <input type="file" />
+                    </div>
+                </div>
+
+                <!-- edit form column -->
+                <div class="span7 personal-info">
+                    <div class="alert alert-info">
+                        <i class="icon-lightbulb"></i>
+                        <strong>您是客服，只有部分权限</strong>
+                    </div>
+                    <h5 class="personal-title">个人信息</h5>
+
+                    <form>
+                        <div class="field-box">
+                            <label>编号:</label>
+                            <input class="span5 inline-input" name="usernum" type="text" value="<%= data.number %>" />
+                        </div>
+                        <div class="field-box">
+                            <label>真实姓名:</label>
+                            <input class="span5 inline-input" name="realname" id="realname" type="text" value="<%= data.realname %>" />
+                        </div>
+                        <div class="field-box">
+                            <label>账号:</label>
+                            <input class="span5 inline-input" name="userid" id="userid" type="text" value="<%= data.userid %>" />
+                        </div>
+                        <div class="field-box">
+                            <label>创建时间:</label>
+                            <input class="span5 inline-input" name="creatime" readonly="readonly" type="text" value="<%= data.creat_time %>" />
+                        </div>
+                        <div class="field-box">
+                            <label>部门:</label>
+                            <div class="ui-select">
+                                <select id="user_time_zone" name="dep" disabled="disabled">
+                                    <option value="运营部" />运营部
+                                    <option value="营销部" />营销部 
+                                    <option value="产品部" />产品部 
+                                    <option value="市场公关部" />市场公关部
+                                    <option value="人力资源部" />人力资源部
+                                    <option value="行政部" />行政部
+                                    <option value="财务部" />财务部                          
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field-box">
+                            <label>电子邮件:</label>
+                            <input class="span5 inline-input" name="email" type="text" value="<%= data.email %>" />
+                        </div>
+                        <div class="span6 field-box actions">
+                            <button type="submit" class="btn-glow primary">保存修改</button>
+    
+                            <span>OR</span>
+                            <input type="reset" value="Cancel" class="reset" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end main container -->
+
+
+	<!-- scripts -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/theme.js"></script>
+    <script src="/js/layer.js"></script>
+    <script src="/js/js_personal-info.js"></script>
+    <script src="/js/js_permiss.js"></script>
+</body>
+</html>

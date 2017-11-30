@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>商品列表</title>
+    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+    <!-- bootstrap -->
+    <link href="/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="/css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="/css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="/css/elements.css" />
+    <link rel="stylesheet" type="text/css" href="/css/icons.css" />
+
+    <!-- libraries -->
+    <link href="/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+    
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="/css/compiled/user-list.css" type="text/css" media="screen" />
+
+    <!-- open sans font -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body>
+
+    <!-- navbar -->
+    <%- include head.ejs %>
+    <!-- end navbar -->
+
+    <!-- sidebar -->
+    <%- include left.ejs %>
+    <!-- end sidebar -->
+    
+
+	<!-- main container -->
+    <div class="content">
+        <div class="container-fluid">
+            <div id="pad-wrapper" class="users-list">
+                <div class="row-fluid header">
+                    <h3>商品列表</h3>
+                    <div class="span10 pull-right">
+                        <input type="text" class="span5 search" placeholder="Type a user's name..." />
+                        
+                        <!-- custom popup filter -->
+                        <!-- styles are located in /css/elements.css -->
+                        <!-- script that enables this dropdown is located in js/theme.js -->
+                        <div class="ui-dropdown">
+                            <div class="head" data-toggle="tooltip" title="Click me!">
+                                Filter users
+                                <i class="arrow-down"></i>
+                            </div>  
+                            <div class="dialog">
+                                <div class="pointer">
+                                    <div class="arrow"></div>
+                                    <div class="arrow_border"></div>
+                                </div>
+                                <div class="body">
+                                    <p class="title">
+                                        Show users where:
+                                    </p>
+                                    <div class="form">
+                                        <select>
+                                            <option />Name
+                                            <option />Email
+                                            <option />Number of orders
+                                            <option />Signed up
+                                            <option />Last seen
+                                        </select>
+                                        <select>
+                                            <option />is equal to
+                                            <option />is not equal to
+                                            <option />is greater than
+                                            <option />starts with
+                                            <option />contains
+                                        </select>
+                                        <input type="text" />
+                                        <a class="btn-flat small">Add filter</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="new-user.html" class="btn-flat success pull-right">
+                            <span>&#43;</span>
+                            NEW USER
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Users table -->
+                <div class="row-fluid table">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="span4 sortable">
+                                    商品名字
+                                </th>
+                                <th class="span3 sortable">
+                                    <span class="line"></span>商品库存
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>商品单价
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>商品容量
+                                </th>
+                                <th class="span3 sortable">
+                                    <span class="line"></span>商品修改时间
+                                </th>
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>删除商品
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <!-- row -->
+                        <% for(let i=0,len=data.length;i<len;i++){ %>
+                        <tr>
+                            <td>
+                                <img src="<%= data[i].productimg %>" class="img-circle avatar hidden-phone" />
+                                <a href="/admin/editshop?name=<%= data[i].productname %>&img=<%= data[i].productimg %>&type=<%= data[i].producttype %>&stock=<%= data[i].productstock %>&price=<%= data[i].productprice %>&size=<%= data[i].productsize %>&time=<%= data[i].creat_time %>" class="name clic"><%= data[i].productname %></a>
+                                <span class="subtext"><%= data[i].producttype %></span>
+                            </td>
+                            <td>
+                                <%= data[i].productstock %>
+                            </td>
+                            <td>
+                                <%= data[i].productprice %>
+                            </td>
+                            <td>
+                                <%= data[i].productsize %>
+                            </td>
+                            <td>
+                                <a href="#"><%= data[i].creat_time %></a>
+                            </td>
+                            <td class="align-right">
+                                <a href="/admin/shopdel?id=<%= data[i]._id %>" class="btn-flat primary clic">删除</a>
+                            </td>
+                        </tr>
+                        <% } %>
+                        <!-- row -->
+                        
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination pull-right">
+                    <ul>
+                        <li><a href="#">&#8249;</a></li>
+                        <li><a class="active" href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&#8250;</a></li>
+                    </ul>
+                </div>
+                <!-- end users table -->
+            </div>
+        </div>
+    </div>
+    <!-- end main container -->
+
+
+	<!-- scripts -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/theme.js"></script>
+    <script src="/js/js_permiss.js"></script>
+    <script src="/js/layer.js"></script>
+    <script src="/js/js_per.js"></script>
+</body>
+</html>
